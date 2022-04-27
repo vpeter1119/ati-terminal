@@ -10,10 +10,11 @@
 /* eslint-disable no-inner-declarations, no-nested-ternary, no-sequences, no-unused-vars */
 
 function decrypt( args ) { // The same function can be used to encode text
-    if ( args.length === 0 ) {
+    /* if ( args.length === 0 ) {
         return "<p>Some encrypted text must be provided: <code>decrypt 53CR3T T3XT</code></p>";
-    }
-    const textInClear = rot13( args.join( " " ) );
+    } */
+    //const textInClear = rot13( args.join( " " ) );
+    const textInClear = rot13( 'punevmneq25@onmqznezrt' );
     return `<p class="hack-reveal">${ textInClear }</p>`;
 }
 function rot13( s ) {

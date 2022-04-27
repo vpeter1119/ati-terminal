@@ -43,7 +43,9 @@
     },
     "maxiprotect.exe": {
         "location": ["petervertesi.com/maciterminal"],
+        "protection": ["admin", "charizard25"],
         "delayed": 3000,
+        "clear": true,
         "message": [
             "<p class=glow style='font-size: 3em'>⚠ FIGYELEM ⚠</p>",
             "",
