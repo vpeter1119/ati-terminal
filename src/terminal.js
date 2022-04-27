@@ -181,7 +181,8 @@ function Terminal() {
      */
     return {
         init() {
-            setHeader();
+            //setHeader();
+            setHeader('You have 1 unread email. Please use the mail command to check it.')
         },
         addCmdLineListeners,
         removeCmdLineListeners,

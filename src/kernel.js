@@ -207,7 +207,7 @@ kernel.init = function init( cmdLineContainer, outputContainer ) {
             $.get( "config/software.json", ( softwareData ) => {
                 softwareInfo = softwareData;
             } ),
-            $.get( "config/network/localhost/manifest.json", ( configuration ) => {
+            $.get( "config/network/petervertesi.com/maciterminal/manifest.json", ( configuration ) => {
                 serverDatabase = configuration;
                 return kernel.getDatabases();
             } )
@@ -242,13 +242,13 @@ system = {
         } );
     },
 
-    whoami() {
+    /* whoami() {
         return new Promise( ( resolve ) => {
             resolve(
                 `${ serverDatabase.serverAddress }/${ userDatabase.userId }`
             );
         } );
-    },
+    }, */
 
     clear() {
         return new Promise( ( resolve ) => {
@@ -257,7 +257,7 @@ system = {
         } );
     },
 
-    date() {
+    /* date() {
         return new Promise( ( resolve ) => {
             const date = new Date();
             if ( serverDatabase.year ) {
@@ -265,13 +265,13 @@ system = {
             }
             resolve( String( date ) );
         } );
-    },
+    }, */
 
-    echo( args ) {
+    /* echo( args ) {
         return new Promise( ( resolve ) => {
             resolve( args.join( " " ) );
         } );
-    },
+    }, */
 
     help( args ) {
         return new Promise( ( resolve ) => {
@@ -354,7 +354,7 @@ system = {
             }
 
             setHeader( "Login successful" );
-            resolve();
+            resolve("You have 1 unread message in your inbox. You can use the mail command to check it.");
         } );
     },
 
@@ -374,7 +374,7 @@ system = {
 
     mail() {
         return new Promise( ( resolve, reject ) => {
-            const messageList = [];
+            const messageList = ['Use the read [index] command to read a message.'];
 
             $.each( mailList, ( index, mail ) => {
                 if ( mail.to.includes( userDatabase.userId ) ) {
@@ -419,7 +419,7 @@ system = {
         } );
     },
 
-    ping( args ) {
+    /* ping( args ) {
         return new Promise( ( resolve, reject ) => {
             if ( args === "" ) {
                 reject( new AddressIsEmptyError() );
@@ -431,9 +431,9 @@ system = {
             } )
                 .fail( () => reject( new AddressNotFoundError( args ) ) );
         } );
-    },
+    }, */
 
-    telnet( args ) {
+    /* telnet( args ) {
         return new Promise( ( resolve, reject ) => {
             if ( args === "" ) {
                 reject( new AddressIsEmptyError() );
@@ -458,7 +458,7 @@ system = {
                     reject( new AddressNotFoundError( args ) );
                 } );
         } );
-    }
+    } */
 };
 
 /**

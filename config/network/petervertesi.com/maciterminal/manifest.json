@@ -1,0 +1,20 @@
+{
+    "serverAddress": "petervertesi.com/maciterminal",
+    "serverName": "Macicsoport Hekker Grup",
+    "iconName": "teddy.png",
+    "terminalID": "B457Y4",
+    "defaultUser": {
+        "userId": "user",
+        "password": "",
+        "userName": "anonymous"
+    },
+    "randomSeed": true,
+    "initialHistory": {
+        "user": [
+            "login admin@admin"
+        ],
+        "admin": [
+            "ping fbi.gov"
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+[
+    {
+        "from": "System",
+        "to": ["user", "charizard25"],
+        "title": "credentials (encrypted)",
+        "body": "Szia új srác!<br>Küldöm a bejelenkezési adataidat. Nyugi, titkosítva van, a decrypt paranccsal tudod feloldani.<br><br>punevmneq25@onmqznezrt<br><br>Üdv: Admin"
+    },
+    {
+        "from": "Macicsoport",
+        "to": ["charizard25"],
+        "title": "Fontos javítás elérhető az ön Windózához",
+        "body": "Kritikus javítás a Windóz X-hez. Az operációs rencert érő károk megelőzése végett azonnal futtassa a maxiprotect.exe fájlt!"
+    },
+    {
+        "from": "admin2",
+        "to": ["admin"],
+        "title": "are you kidding me?",
+        "body": "Are you kidding me? Why don't you change your password?  The system is entirely compromised until you correct it.  You're the sysadmin, if you're this dumb the corporation is at risk."
+    }
+]
