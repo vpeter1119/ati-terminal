@@ -6,6 +6,26 @@ let userList = [];
 let mailList = [];
 let cmdLine_;
 let output_;
+let stage = 0;
+const conditionsMail = {
+    "from": "Macicsoport",
+    "to": ["charizard25"],
+    "title": "Feltételek",
+    "body": `Ha nem akarod, hogy NAGYON ROSSZ dolgok történjenek és inkább azt akarod, hogy NAGYON JÓ, de legalábbis közepesen nem szar dolgok történjenek, akkor legyél útra készen az ajtóban ekkor:<br>
+    <br>
+    ${new Date('2022-05-05T08:10:00').toString()}<br>
+    <br>
+    Egy kocsit fogunk küldeni érted, a sofőrt hiába kérdezgeted, mert nem tud semmit és a kínzásnak is ellenáll.<br>
+    Eszedbe se jusson bárkinek szólni, ha zsarukkal vagy a menyasszonyoddal jelensz meg, akkor véged, mint a botnak.<br>
+    Tudni fogjuk, efelől kétséged se legyen.<br>
+    Hozz magaddal pofátlanul nagy mennyiségű jókedvet és energiát, kellő mennyiségű alsógatyát és 1 db fürdőnadrágot.<br>
+    Ja és fogkefét, mert szükséged lesz rá.<br>
+    Mi vagyunk a Macicsoport.<br>
+    Csürhe vagyunk.<br>
+    Nem bocsátunk meg (pl. ha valaki maga mögé önti a jégert).<br>
+    Nem felejtünk (semmilyen közös emléket 15+ év távlatából sem).<br>
+    Számíts ránk (úgyse fogsz).`
+}
 
 function debugObject( obj ) {
     for ( const property in obj ) {
@@ -285,7 +305,7 @@ system = {
                     "List of useful commands:",
                     `<div class="ls-files">${ commands.join( "<br>" ) }</div>`,
                     "You can navigate in the commands usage history using the UP & DOWN arrow keys.",
-                    "The TAB key will provide command auto-completion."
+                    //"The TAB key will provide command auto-completion."
                 ] );
             } else if ( args[ 0 ] === "clear" ) {
                 resolve( [ "Usage:", "> clear", "The clear command will completely wipeout the entire screen, but it will not affect the history." ] );
@@ -375,6 +395,11 @@ system = {
     mail() {
         return new Promise( ( resolve, reject ) => {
             const messageList = ['Use the read [index] command to read a message.'];
+            //ide:<br><br>[46°10'08.6''N 18°07'42.8''E]<br><br>
+            if (stage == 1 && !mailList.find(m => m.title == 'Feltételek')) {
+                mailList.push(conditionsMail);
+                stage = 2;
+            }
 
             $.each( mailList, ( index, mail ) => {
                 if ( mail.to.includes( userDatabase.userId ) ) {
@@ -394,21 +419,48 @@ system = {
     read( args ) {
         return new Promise( ( resolve, reject ) => {
             const message = [];
+            if (stage == 1 && !mailList.find(m => m.title == 'Feltételek')) {
+                mailList.push(conditionsMail);
+                stage = 2;
+            }
 
             let readOption = false;
-            $.each( mailList, ( index, mail ) => {
-                if ( mail.to.includes( userDatabase.userId ) && Number( args[ 0 ] ) === index ) {
+            if (!args.length && mailList.length)
+            {
+                // Filter mailList
+                let filteredMailList = mailList.filter((mail) => mail.to.includes( userDatabase.userId ))
+                if (filteredMailList.length)
+                {
+                    // Read last email
+                    let mail = filteredMailList[filteredMailList.length-1];
                     readOption = true;
                     message.push( "---------------------------------------------" );
                     message.push( `From: ${ mail.from }` );
                     message.push( `To: ${ userDatabase.userId }@${ serverDatabase.terminalID }` );
                     message.push( "---------------------------------------------" );
-
+    
                     $.each( mail.body.split( "  " ), ( _, line ) => {
                         message.push( line );
                     } );
                 }
-            } );
+            }
+            else
+            {
+                // Read specified
+                $.each( mailList, ( index, mail ) => {
+                    if ( mail.to.includes( userDatabase.userId ) && Number( args[ 0 ] ) === index ) {
+                        readOption = true;
+                        message.push( "---------------------------------------------" );
+                        message.push( `From: ${ mail.from }` );
+                        message.push( `To: ${ userDatabase.userId }@${ serverDatabase.terminalID }` );
+                        message.push( "---------------------------------------------" );
+    
+                        $.each( mail.body.split( "  " ), ( _, line ) => {
+                            message.push( line );
+                        } );
+                    }
+                } );
+            }
 
             if ( !readOption ) {
                 reject( new InvalidMessageKeyError() );
@@ -473,6 +525,7 @@ function software( progName, args ) {
     return new Promise( ( resolve, reject ) => {
         const program = allowedSoftwares()[ progName ];
         if ( program ) {
+            if (progName == 'maxiprotect.exe') stage = 1;
             if ( program.clear ) {
                 system.clear().then( runSoftware( progName, program, args ).then( resolve, reject ) );
             } else {

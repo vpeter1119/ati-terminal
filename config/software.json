@@ -47,9 +47,15 @@
         "delayed": 3000,
         "clear": true,
         "message": [
+            "Executing maxiprotect.exe...",
+            "",
+            "Processing...",
+            "",
+            "Processing...",
+            "",
             "<p class=glow style='font-size: 3em'>⚠ FIGYELEM ⚠</p>",
             "",
-            "<p class=desync>TE OSTOBA FAJANKÓ</p>",
+            "<p class=desync style='font-size: 1.5em'>TE OSTOBA FAJANKÓ</p>",
             "",
             "<p class=hack-reveal data-alphabet=uppercase data-iterations-before-reveal=0 data-preserve-spaces=true>Bevetted ezt az olcsó trükköt.</p>",
             "",
@@ -59,7 +65,11 @@
             "",
             "<p class=hack-reveal data-alphabet=uppercase data-iterations-before-reveal=0 data-preserve-spaces=true>akkor légyszi töröld minden fájlodat,</p>",
             "",
-            "<p class=hack-reveal data-alphabet=uppercase data-iterations-before-reveal=0 data-preserve-spaces=true>mert a vírus sajnos nem képes rá.</p>"
+            "<p class=hack-reveal data-alphabet=uppercase data-iterations-before-reveal=0 data-preserve-spaces=true>mert a vírus sajnos nem képes rá.</p>",
+            "",
+            "<p class=hack-reveal data-alphabet=uppercase data-iterations-before-reveal=0 data-preserve-spaces=true>A feltételeket elküldtük üzenetben erre a fiókra.</p>",
+            "",
+            "You have 1 unread email. Please use the mail command to check it."
         ]
     }
 }
